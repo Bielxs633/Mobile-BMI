@@ -1,10 +1,10 @@
 package br.senai.sp.jandira.bmi.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -28,7 +28,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -38,8 +37,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.senai.sp.jandira.bmi.R
 
+
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun UserScreen(modifier: Modifier = Modifier) {
 
     var nomeState = remember {
         mutableStateOf(value = "")
@@ -52,29 +52,24 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .background(brush = Brush.verticalGradient(
                 listOf(
-                    Color(0xff6700F5),
-                    Color(0xff27005)
-                    )
+                    Color(0xff270050),
+                    Color(0xff6700F5)
+                )
             ))
     ){
         Column(
             modifier = Modifier
                 .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.SpaceBetween
         ){
-            Image(
-                painter = painterResource(R.drawable.exercise),
-                contentDescription = stringResource(R.string.logo),
-                modifier = Modifier
-                    .padding(vertical = 60.dp)
-            )
             Text(
-                text = stringResource(R.string.welcome),
+                text = stringResource(R.string.Hi),
                 fontSize = 40.sp,
                 color = Color.White,
                 modifier = Modifier
-                    .padding(bottom = 60.dp)
+                    .padding(50.dp)
+
             )
             Card(
                 modifier = Modifier
@@ -83,8 +78,15 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 shape = RoundedCornerShape(
                     topStart = 48.dp,
                     topEnd = 48.dp
-                    )
+                )
             ){
+                // Linha de Cadastro:
+                Row(
+                    modifier = Modifier
+                        .align(Alignment.End)
+                ){
+
+                }
                 Column(
                     modifier = Modifier
                         .padding(30.dp)
@@ -92,13 +94,6 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                         .fillMaxSize(),
                     horizontalAlignment = Alignment.Start
                 ){
-                    Text(
-                        text = stringResource(R.string.your_name),
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier
-                            .padding(bottom = 0.dp)
-                    )
                     OutlinedTextField(
                         value = nomeState.value,
                         onValueChange = {
@@ -146,7 +141,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                         ){
                             Text(
                                 text = stringResource(R.string.next),
-                                )
+                            )
                             Icon(
                                 imageVector = Icons.Filled.ArrowForward,
                                 contentDescription = ""
@@ -161,6 +156,6 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 
 @Preview(showSystemUi = true)
 @Composable
-private fun HomeScreenPreview() {
-    HomeScreen()
+private fun UserScreenPreview() {
+    UserScreen()
 }

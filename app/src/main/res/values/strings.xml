@@ -6,4 +6,5 @@
     <string name="next">Next</string>
     <string name="logo">Application logo</string>
     <string name="typing">Type your name:</string>
+    <string name="Hi">Hi!</string>
 </resources>
