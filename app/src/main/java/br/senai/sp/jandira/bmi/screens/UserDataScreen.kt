@@ -1,5 +1,7 @@
-package br.senai.sp.jandira.bmi.screens
+package br.senai.sp.jandira.BMI.UserDataScreens
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,15 +11,24 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Balance
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Height
 import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Numbers
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -28,7 +39,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,7 +51,7 @@ import br.senai.sp.jandira.bmi.R
 
 
 @Composable
-fun UserScreen(modifier: Modifier = Modifier) {
+fun UserDataScreen(modifier: Modifier = Modifier) {
 
     var nomeState = remember {
         mutableStateOf(value = "")
@@ -49,101 +62,240 @@ fun UserScreen(modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(brush = Brush.verticalGradient(
-                listOf(
-                    Color(0xff270050),
-                    Color(0xff6700F5)
+            .background(
+                brush = Brush.verticalGradient(
+                    listOf(
+                        Color(0xff270050),
+                        Color(0xff6700F5)
+                    )
                 )
-            ))
-    ){
+            )
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize(),
-            horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.SpaceBetween
-        ){
+        ) {
             Text(
-                text = stringResource(R.string.Hi),
-                fontSize = 40.sp,
+                text = stringResource(R.string.hi),
+                fontSize = 34.sp,
                 color = Color.White,
                 modifier = Modifier
-                    .padding(50.dp)
-
+                    .weight(1f)
+                    .padding(horizontal = 32.dp, vertical = 32.dp)
             )
+
+
             Card(
                 modifier = Modifier
                     .fillMaxSize()
-                    .height(150.dp),
+                    .weight(4f),
                 shape = RoundedCornerShape(
                     topStart = 48.dp,
                     topEnd = 48.dp
+                ),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.White
                 )
-            ){
-                // Linha de Cadastro:
-                Row(
-                    modifier = Modifier
-                        .align(Alignment.End)
-                ){
-
-                }
+            ) {
                 Column(
                     modifier = Modifier
-                        .padding(30.dp)
-                        .height(350.dp)
-                        .fillMaxSize(),
-                    horizontalAlignment = Alignment.Start
-                ){
-                    OutlinedTextField(
-                        value = nomeState.value,
-                        onValueChange = {
-                            nomeState.value = it
-                        },
-                        label = {
-                            Text(
-                                text = stringResource(R.string.typing)
-                            )
-                        },
+                        .fillMaxSize()
+                        .padding(32.dp),
+                    verticalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 16.dp),
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Default.Email,
-                                contentDescription = "",
-                                tint = Color(0xFF6D21D5)
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .weight(1f),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Card(
+                                modifier = Modifier
+                                    .size(150.dp),
+                                shape = CircleShape,
+                                border = BorderStroke(
+                                    width = 2.dp,
+                                    brush = Brush.horizontalGradient(
+                                        listOf(
+                                            Color(0xff6700F5),
+                                            Color(0xFFA769FF),
+                                            Color(0xff6700F5)
+                                        )
+                                    )
+                                )
+                            ) {
+                                Image(
+                                    painter = painterResource(R.drawable.man),
+                                    contentDescription = ""
+                                )
+                            }
+                            Button(
+                                onClick = {},
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color(
+                                        0xFF6D21D5
+                                    )
+                                ),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(
+                                        horizontal = 8.dp,
+                                        vertical = 8.dp
+
+                                    )
                             )
-                        },
-                        trailingIcon = {
-                            Icon(
-                                imageVector = Icons.Default.LocationOn,
-                                contentDescription = "",
-                                tint = Color(0xFF6D21D5)
-                            )
-                        },
-                        keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Text,
-                            capitalization = KeyboardCapitalization.Words
-                        )
-                    )
+                            {
+                                Text(
+                                    text = stringResource(R.string.male)
+                                )
+                            }
+                        }
+                        Column(
+                            modifier = Modifier
+                                .weight(1f),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ){
+                            Card(
+                                modifier = Modifier
+                                    .size(150.dp),
+                                shape = CircleShape,
+                                border = BorderStroke(
+                                    width = 2.dp,
+                                    brush = Brush.horizontalGradient(
+                                        listOf(
+                                            Color(0xff6700F5),
+                                            Color(0xFFA769FF),
+                                            Color(0xff6700F5)
+                                        )
+                                    )
+                                )
+                            ) {
+                                Image(
+                                    painter = painterResource(R.drawable.woman),
+                                    contentDescription = ""
+                                )
+                            }
+                            Button(
+                                onClick = {},
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color(
+                                        0xFF6D21D5
+                                    )
+                                ),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(
+                                        horizontal = 8.dp,
+                                        vertical = 8.dp
+                                    )
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.female)
+                                )
+                            }
+                        }
+                    }
                     Column(
                         modifier = Modifier
-                            .padding(0.dp)
-                            .height(300.dp)
-                            .fillMaxWidth(),
-                        verticalArrangement = Arrangement.Bottom,
-                        horizontalAlignment = Alignment.End,
+                            .padding(top = 50.dp)
+                            .height(350.dp)
+                            .fillMaxSize(),
+                        horizontalAlignment = Alignment.Start
                     ){
+                        OutlinedTextField(
+                            value = nomeState.value,
+                            onValueChange = {
+                                nomeState.value = it
+                            },
+                            label = {
+                                Text(
+                                    text = stringResource(R.string.age)
+                                )
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 16.dp),
+                            shape = RoundedCornerShape(13.dp),
+                            leadingIcon = {
+                                Icon(
+                                    imageVector = Icons.Default.Numbers,
+                                    contentDescription = "",
+                                    tint = Color(0xFF6D21D5)
+                                )
+                            },
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Next,
+                                capitalization = KeyboardCapitalization.Words
+                            )
+                        )
+                        OutlinedTextField(
+                            value = nomeState.value,
+                            onValueChange = {
+                                nomeState.value = it
+                            },
+                            label = {
+                                Text(
+                                    text = stringResource(R.string.weight)
+                                )
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 16.dp),
+                            shape = RoundedCornerShape(13.dp),
+                            leadingIcon = {
+                                Icon(
+                                    imageVector = Icons.Default.Balance,
+                                    contentDescription = "",
+                                    tint = Color(0xFF6D21D5)
+                                )
+                            },
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Next,
+                                capitalization = KeyboardCapitalization.Words
+                            )
+                        )
+                        OutlinedTextField(
+                            value = nomeState.value,
+                            onValueChange = {
+                                nomeState.value = it
+                            },
+                            label = {
+                                Text(
+                                    text = stringResource(R.string.height)
+                                )
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 16.dp),
+                            shape = RoundedCornerShape(13.dp),
+                            leadingIcon = {
+                                Icon(
+                                    imageVector = Icons.Default.Height,
+                                    contentDescription = "",
+                                    tint = Color(0xFF6D21D5)
+                                )
+                            },
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Done,
+                                capitalization = KeyboardCapitalization.Words
+                            )
+                        )
                         Button(
                             onClick = {},
-                            shape = RoundedCornerShape(10.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = Color  (0xFF6D21D5))
+                            shape = RoundedCornerShape(50.dp),
+                            colors = ButtonDefaults.buttonColors(containerColor = Color  (0xFF6D21D5)),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 60.dp)
                         ){
                             Text(
-                                text = stringResource(R.string.next),
-                            )
-                            Icon(
-                                imageVector = Icons.Filled.ArrowForward,
-                                contentDescription = ""
+                                text = stringResource(R.string.calculate),
                             )
                         }
                     }
@@ -152,9 +304,9 @@ fun UserScreen(modifier: Modifier = Modifier) {
         }
     }
 }
-
 @Preview(showSystemUi = true)
 @Composable
-private fun UserScreenPreview() {
-    UserScreen()
+private fun UserDataScreenPreview() {
+    UserDataScreen()
 }
+
