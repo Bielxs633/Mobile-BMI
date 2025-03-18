@@ -19,6 +19,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -97,7 +98,7 @@ fun ResultScreen(modifier: Modifier = Modifier) {
                         )
                     ){
                         Text(
-                            text = stringResource(R.string.hi),
+                            text = stringResource(R.string.imc),
                             fontSize = 40.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.Black,
@@ -195,11 +196,22 @@ fun ResultScreen(modifier: Modifier = Modifier) {
                             }
                         }
                     }
-                    Column(
+                    Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(250.dp)
                             .padding(30.dp)
+                            .background(
+                                brush = Brush.verticalGradient(
+                                    listOf(
+                                        Color(0xff270050),
+                                        Color(0xff6700F5),
+                                        Color(0xFFA769FF),
+                                        Color(0xff6700F5),
+                                        Color(0xff270050),
+                                    )
+                                )
+                            )
                     ){}
                     HorizontalDivider(
                         modifier = modifier
