@@ -12,22 +12,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Balance
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Height
-import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Numbers
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -288,7 +282,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                         )
                         Button(
                             onClick = {},
-                            shape = RoundedCornerShape(50.dp),
+                            shape = RoundedCornerShape(15.dp),
                             colors = ButtonDefaults.buttonColors(containerColor = Color  (0xFF6D21D5)),
                             modifier = Modifier
                                 .fillMaxWidth()

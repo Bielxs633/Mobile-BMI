@@ -13,4 +13,14 @@
     <string name="calculate">Calculate</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+
+    <string name="BMIresult">Your BMI Result</string>
+    <string name="newCalc">New Calc</string>
+    <string name="youClass">You Have Class..</string>
+
+    <string name="imc">13,1</string>
+    <string name="ageValue">17</string>
+    <string name="weightValue">70 Kg</string>
+    <string name="HeightValue">178 cm</string>
+
 </resources>
