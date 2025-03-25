@@ -36,10 +36,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(controleDeNavegacao: NavHostController?) {
 
     var nomeState = remember {
         mutableStateOf(value = "")
@@ -140,7 +141,9 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                         horizontalAlignment = Alignment.End,
                     ){
                         Button(
-                            onClick = {},
+                            onClick = {
+                                controleDeNavegacao?.navigate("user_data")
+                            },
                             shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(containerColor = Color  (0xFF6D21D5))
                         ){
@@ -162,5 +165,5 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 @Preview(showSystemUi = true)
 @Composable
 private fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(null)
 }
