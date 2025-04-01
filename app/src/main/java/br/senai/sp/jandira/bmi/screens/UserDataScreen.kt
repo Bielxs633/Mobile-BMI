@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.BMI.UserDataScreens
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -49,11 +51,39 @@ import br.senai.sp.jandira.bmi.R
 @Composable
 fun UserDataScreen(controleDeNavegacao: NavHostController?) {
 
-    var nomeState = remember {
+    var ageState = remember {
+        mutableStateOf(value = "")
+    }
+    var weightState = remember {
+        mutableStateOf(value = "")
+    }
+    var heightState = remember {
         mutableStateOf(value = "")
     }
 
-    var nome = ""
+    val selectedColorState = remember {
+        mutableStateOf(Color(0xFF6D21D5))
+    }
+    val unselectedColorState = remember {
+        mutableStateOf(Color.LightGray)
+    }
+
+    val isMaleClicked = remember {
+        mutableStateOf(false)
+    }
+
+    val isFemaleClicked = remember {
+        mutableStateOf(false)
+    }
+
+    val context = LocalContext.current
+
+    val userFile = context.getSharedPreferences("user_file", Context.MODE_PRIVATE)
+
+    val userName = userFile.getString("user_name", "user not found")
+
+    val editor = userFile.edit()
+
 
     Box(
         modifier = Modifier
@@ -72,7 +102,7 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
                 .fillMaxSize(),
         ) {
             Text(
-                text = stringResource(R.string.hi),
+                text = "${stringResource(R.string.hi)}, $userName!",
                 fontSize = 34.sp,
                 color = Color.White,
                 modifier = Modifier
@@ -129,11 +159,13 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
                                 )
                             }
                             Button(
-                                onClick = {},
+                                onClick = {
+                                    isMaleClicked.value = true
+                                    isFemaleClicked.value = false
+                                },
                                 colors = ButtonDefaults.buttonColors(
-                                    containerColor = Color(
-                                        0xFF6D21D5
-                                    )
+                                    containerColor = if (isMaleClicked.value) selectedColorState.value
+                                                    else unselectedColorState.value
                                 ),
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -175,11 +207,13 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
                                 )
                             }
                             Button(
-                                onClick = {},
+                                onClick = {
+                                    isFemaleClicked.value = true
+                                    isMaleClicked.value = false
+                                },
                                 colors = ButtonDefaults.buttonColors(
-                                    containerColor = Color(
-                                        0xFF6D21D5
-                                    )
+                                    containerColor = if (isFemaleClicked.value) selectedColorState.value
+                                    else unselectedColorState.value
                                 ),
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -202,9 +236,9 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
                         horizontalAlignment = Alignment.Start
                     ){
                         OutlinedTextField(
-                            value = nomeState.value,
+                            value = ageState.value,
                             onValueChange = {
-                                nomeState.value = it
+                                ageState.value = it
                             },
                             label = {
                                 Text(
@@ -229,9 +263,9 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
                             )
                         )
                         OutlinedTextField(
-                            value = nomeState.value,
+                            value = weightState.value,
                             onValueChange = {
-                                nomeState.value = it
+                                weightState.value = it
                             },
                             label = {
                                 Text(
@@ -256,9 +290,9 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
                             )
                         )
                         OutlinedTextField(
-                            value = nomeState.value,
+                            value = heightState.value,
                             onValueChange = {
-                                nomeState.value = it
+                                heightState.value = it
                             },
                             label = {
                                 Text(
@@ -288,6 +322,10 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
                         )
                         Button(
                             onClick = {
+                                editor.putInt("user_age", ageState.value.toInt())
+                                editor.putInt("user_weight", weightState.value.toInt())
+                                editor.putInt("user_height", heightState.value.toInt())
+                                editor.apply()
                                 controleDeNavegacao?.navigate("result")
                             },
                             shape = RoundedCornerShape(15.dp),

@@ -6,18 +6,16 @@
     <string name="next">Next</string>
     <string name="logo">Application logo</string>
     <string name="typing">Type your name:</string>
-    <string name="hi">Hi!</string>
     <string name="age">Age</string>
     <string name="weight">Weight</string>
     <string name="height">Height</string>
     <string name="calculate">Calculate</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-
     <string name="BMIresult">Your BMI Result</string>
     <string name="newCalc">New Calc</string>
+    <string name="hi">Hi!</string>
     <string name="youClass">You Have Class..</string>
-
     <string name="imc">13,1</string>
     <string name="ageValue">17</string>
     <string name="weightValue">70 Kg</string>

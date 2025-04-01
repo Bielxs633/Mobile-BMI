@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.BMI.ResultScreens
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -36,6 +38,14 @@ import br.senai.sp.jandira.bmi.R
 
 @Composable
 fun ResultScreen(controleDeNavegacao: NavHostController?) {
+
+    val context = LocalContext.current
+
+    val userFile = context.getSharedPreferences("user_file", Context.MODE_PRIVATE)
+
+    val userAge = userFile.getInt("user_age", 0)
+    val userWeight = userFile.getInt("user_weight", 0)
+    val userHeight = userFile.getInt("user_height", 0)
 
     Box(
         modifier = Modifier
@@ -103,7 +113,7 @@ fun ResultScreen(controleDeNavegacao: NavHostController?) {
                     ){
                         Text(
                             text = stringResource(R.string.imc),
-                            fontSize = 40.sp,
+                            fontSize = 43.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.Black,
                             modifier = Modifier
@@ -149,7 +159,7 @@ fun ResultScreen(controleDeNavegacao: NavHostController?) {
                                         .padding(top = 5.dp)
                                 )
                                 Text(
-                                    text = stringResource(R.string.ageValue),
+                                    text = "$userAge",
                                     fontSize = 20.sp,
                                     color = Color.Black,
                                     modifier = Modifier
@@ -170,7 +180,7 @@ fun ResultScreen(controleDeNavegacao: NavHostController?) {
                                         .padding(top = 5.dp)
                                 )
                                 Text(
-                                    text = stringResource(R.string.weightValue),
+                                    text = "$userWeight",
                                     fontSize = 20.sp,
                                     color = Color.Black,
                                     modifier = Modifier
@@ -191,7 +201,7 @@ fun ResultScreen(controleDeNavegacao: NavHostController?) {
                                         .padding(top = 5.dp)
                                 )
                                 Text(
-                                    text = stringResource(R.string.HeightValue),
+                                    text = "$userHeight",
                                     fontSize = 20.sp,
                                     color = Color.Black,
                                     modifier = Modifier
