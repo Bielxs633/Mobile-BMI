@@ -3,6 +3,7 @@ package br.senai.sp.jandira.BMI.ResultScreens
 import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.layout.getDefaultLazyLayoutKey
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -34,6 +36,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
+import br.senai.sp.jandira.bmi.model.bmiCalculator
+import br.senai.sp.jandira.bmi.screens.components.BmiLevels
+import java.util.Locale
 
 
 @Composable
@@ -46,6 +51,8 @@ fun ResultScreen(controleDeNavegacao: NavHostController?) {
     val userAge = userFile.getInt("user_age", 0)
     val userWeight = userFile.getInt("user_weight", 0)
     val userHeight = userFile.getInt("user_height", 0)
+
+    val resultBmi = bmiCalculator(userWeight, userHeight.toDouble())
 
     Box(
         modifier = Modifier
@@ -90,7 +97,7 @@ fun ResultScreen(controleDeNavegacao: NavHostController?) {
                 ){
                     Card(
                         modifier = Modifier
-                            .size(150.dp)
+                            .size(140.dp)
                             .padding(top = 0.dp),
                         shape = CircleShape,
                         colors = CardDefaults.cardColors(
@@ -98,22 +105,29 @@ fun ResultScreen(controleDeNavegacao: NavHostController?) {
                         ),
                         border = BorderStroke(
                             width = 4.dp,
-                            brush = Brush.horizontalGradient(
-                                listOf(
-                                    Color(0xff6700F5),
-                                    Color(0xFFA769FF),
-                                    Color(0xff6700F5),
-                                    Color(0xff6700F5),
-                                    Color(0xFFA769FF),
-                                    Color(0xff6700F5),
+                            color = resultBmi.color
 
-                                )
-                            )
                         )
                     ){
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ){
+                            val bmiValue = resultBmi.bmiValues.second
+                            Text(
+                                text = String.format(Locale.getDefault(), "% 1f", bmiValue),
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black,
+                                modifier = Modifier
+                                    .padding(horizontal = 50.dp, vertical = 50.dp)
+                            )
+                        }
                         Text(
-                            text = stringResource(R.string.imc),
-                            fontSize = 43.sp,
+                            text = "${resultBmi.bmiValues.second}",
+                            fontSize = 32.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.Black,
                             modifier = Modifier
@@ -127,7 +141,7 @@ fun ResultScreen(controleDeNavegacao: NavHostController?) {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ){
                         Text(
-                            text = stringResource(R.string.youClass),
+                            text = "${resultBmi.bmiValues.first}",
                             fontSize = 23.sp,
                             color = Color.Black,
                             modifier = Modifier
@@ -210,23 +224,30 @@ fun ResultScreen(controleDeNavegacao: NavHostController?) {
                             }
                         }
                     }
-                    Box(
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(250.dp)
                             .padding(30.dp)
-                            .background(
-                                brush = Brush.verticalGradient(
-                                    listOf(
-                                        Color(0xff270050),
-                                        Color(0xff6700F5),
-                                        Color(0xFFA769FF),
-                                        Color(0xff6700F5),
-                                        Color(0xff270050),
-                                    )
-                                )
-                            )
-                    ){}
+//                            .background(
+//                                brush = Brush.verticalGradient(
+//                                    listOf(
+//                                        Color(0xff270050),
+//                                        Color(0xff6700F5),
+//                                        Color(0xFFA769FF),
+//                                        Color(0xff6700F5),
+//                                        Color(0xff270050),
+//                                    )
+//                                )
+//                            )
+                    ){
+                        BmiLevels()
+                        BmiLevels()
+                        BmiLevels()
+                        BmiLevels()
+                        BmiLevels()
+
+                    }
                     HorizontalDivider(
                         modifier = Modifier
                             .padding(15.dp)

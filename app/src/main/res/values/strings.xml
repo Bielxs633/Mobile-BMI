@@ -14,6 +14,14 @@
     <string name="female">Female</string>
     <string name="BMIresult">Your BMI Result</string>
     <string name="newCalc">New Calc</string>
+
+    <string name="under_weight">You are below your ideal weight</string>
+    <string name="normal_weight">You are normal body weight</string>
+    <string name="over_weight">You are slightly overweight</string>
+    <string name="class1_weight">You have class I obesity</string>
+    <string name="class2_weight">You have class II obesity</string>
+    <string name="class3_weight">You have class III obesity</string>
+
     <string name="hi">Hi!</string>
     <string name="youClass">You Have Class..</string>
     <string name="imc">13,1</string>
