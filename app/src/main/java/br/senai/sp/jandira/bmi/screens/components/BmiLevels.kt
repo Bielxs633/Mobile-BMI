@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,7 +28,7 @@ fun BmiLevels(
     leftText: String = "",
     rightText: String = "",
     background: Color = Color.Transparent,
-    bulletBackground: Color = colorResource(R.color.light_blue)
+    bulletBackground: Color = (colorResource(R.color.light_blue))
 ){
 
     Row(
@@ -59,7 +60,10 @@ fun BmiLevels(
                     .padding(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
-            ){}
+            ){
+                Text(leftText)
+                Text(rightText)
+            }
         }
     }
 }
