@@ -118,11 +118,9 @@ fun ResultScreen(controleDeNavegacao: NavHostController?) {
                             val bmiValue = resultBmi.bmiValues.second
                             Text(
                                 text = String.format(Locale.getDefault(), "% 1f", bmiValue),
-                                fontSize = 20.sp,
+                                fontSize = 35.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.Black,
-                                modifier = Modifier
-                                    .padding(horizontal = 50.dp, vertical = 50.dp)
                             )
                         }
                         Text(
@@ -241,11 +239,24 @@ fun ResultScreen(controleDeNavegacao: NavHostController?) {
 //                                )
 //                            )
                     ){
-                        BmiLevels()
-                        BmiLevels()
-                        BmiLevels()
-                        BmiLevels()
-                        BmiLevels()
+                        BmiLevels(
+                            leftText = stringResource(R.string.underweight)
+                        )
+                        BmiLevels(
+                            leftText = stringResource(R.string.normal)
+                        )
+                        BmiLevels(
+                            leftText = stringResource(R.string.overweight)
+                        )
+                        BmiLevels(
+                            leftText = stringResource(R.string.obesity1)
+                        )
+                        BmiLevels(
+                            leftText = stringResource(R.string.obesity2)
+                        )
+                        BmiLevels(
+                            leftText = stringResource(R.string.obesity3)
+                        )
 
                     }
                     HorizontalDivider(

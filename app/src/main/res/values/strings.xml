@@ -22,6 +22,13 @@
     <string name="class2_weight">You have class II obesity</string>
     <string name="class3_weight">You have class III obesity</string>
 
+    <string name="underweight">Underweight</string>
+    <string name="normal">Normal</string>
+    <string name="overweight">Overweight</string>
+    <string name="obesity1">Obesity Class I </string>
+    <string name="obesity2">Obesity Class II </string>
+    <string name="obesity3">Obesity Class III </string>
+
     <string name="hi">Hi!</string>
     <string name="youClass">You Have Class..</string>
     <string name="imc">13,1</string>
